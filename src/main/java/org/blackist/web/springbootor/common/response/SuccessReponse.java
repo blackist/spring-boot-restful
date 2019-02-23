@@ -6,9 +6,9 @@ package org.blackist.web.springbootor.common.response;
  * @author 董亮亮 1075512174@qq.com.
  * @Date:2019/2/4 15:26.
  */
-public class SuccessReponse<T> extends Response<T> {
+public class SuccessReponse extends Response {
 
-    public SuccessReponse(T data) {
+    public SuccessReponse(Object data) {
         this.setData(data);
         this.setCode(ErrorCode.OK);
         this.setMsg("OK");

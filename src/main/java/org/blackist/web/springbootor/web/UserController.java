@@ -26,7 +26,7 @@ public class UserController extends  BaseController {
 
     @GetMapping("/")
     public Response queryUsers() {
-        return new SuccessReponse<>(new ArrayList<>(users.values()));
+        return new SuccessReponse(new ArrayList<>(users.values()));
     }
 
     @PostMapping("/")
