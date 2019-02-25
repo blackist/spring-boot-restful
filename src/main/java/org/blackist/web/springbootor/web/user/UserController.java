@@ -1,8 +1,9 @@
-package org.blackist.web.springbootor.web;
+package org.blackist.web.springbootor.web.user;
 
 import org.blackist.web.springbootor.common.response.Response;
 import org.blackist.web.springbootor.common.response.SuccessReponse;
 import org.blackist.web.springbootor.entity.User;
+import org.blackist.web.springbootor.web.BaseController;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -15,7 +16,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping("/users")
-public class UserController extends  BaseController {
+public class UserController extends BaseController {
 
     private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 

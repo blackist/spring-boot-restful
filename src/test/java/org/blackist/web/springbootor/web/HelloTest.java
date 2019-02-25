@@ -1,5 +1,6 @@
 package org.blackist.web.springbootor.web;
 
+import org.blackist.web.springbootor.web.quiz.HelloController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

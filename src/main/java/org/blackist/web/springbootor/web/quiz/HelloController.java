@@ -1,4 +1,4 @@
-package org.blackist.web.springbootor.web;
+package org.blackist.web.springbootor.web.quiz;
 
 import org.blackist.web.springbootor.common.response.Response;
 import org.springframework.web.bind.annotation.GetMapping;
