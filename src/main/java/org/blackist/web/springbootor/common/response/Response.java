@@ -10,7 +10,7 @@ public class Response {
 
     private int code;
 
-    private String msg;
+    private String message;
 
     private Object data;
 
@@ -27,12 +27,12 @@ public class Response {
         return this;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public Response setMsg(String msg) {
-        this.msg = msg;
+    public Response setMessage(String message) {
+        this.message = message;
         return this;
     }
 
@@ -46,14 +46,14 @@ public class Response {
     }
 
     public static Response SUCCESS(Object data) {
-        return new Response().setData(data).setCode(ErrorCode.OK).setMsg("OK");
+        return new Response().setData(data).setCode(ErrorCode.OK).setMessage("OK");
     }
 
     public static Response PARAM_ERROR() {
-        return new Response().setCode(ErrorCode.PARAM_ERROR).setMsg("Param Error");
+        return new Response().setCode(ErrorCode.PARAM_ERROR).setMessage("Param Error");
     }
 
     public static Response PARAM_NULL() {
-        return new Response().setCode(ErrorCode.PARAM_NULL).setMsg("Param Null");
+        return new Response().setCode(ErrorCode.PARAM_NULL).setMessage("Param Null");
     }
 }

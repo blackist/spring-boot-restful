@@ -11,6 +11,6 @@ public class SuccessReponse extends Response {
     public SuccessReponse(Object data) {
         this.setData(data);
         this.setCode(ErrorCode.OK);
-        this.setMsg("OK");
+        this.setMessage("OK");
     }
 }
