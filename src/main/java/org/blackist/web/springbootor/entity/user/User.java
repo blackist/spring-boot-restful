@@ -1,4 +1,6 @@
-package org.blackist.web.springbootor.entity;
+package org.blackist.web.springbootor.entity.user;
+
+import org.blackist.web.springbootor.entity.BaseEntity;
 
 /**
  * TODO ${TODO}
