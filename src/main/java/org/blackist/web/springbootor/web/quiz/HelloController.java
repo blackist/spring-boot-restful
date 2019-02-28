@@ -1,13 +1,15 @@
 package org.blackist.web.springbootor.web.quiz;
 
+import org.blackist.web.springbootor.common.exception.ApiException;
+import org.blackist.web.springbootor.common.exception.WebException;
 import org.blackist.web.springbootor.common.response.Response;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
-@RestController
+@Controller
 @RequestMapping("/hello")
+@ApiIgnore
 public class HelloController {
 
     @GetMapping
@@ -20,9 +22,42 @@ public class HelloController {
         return "Test SpringBootor!";
     }
 
-    @GetMapping("/header")
-    public Response testHeader(@RequestHeader("id") Long id) {
+    @GetMapping("/param")
+    public @ResponseBody
+    Response testParam(@RequestParam("id") Long id) {
 
         return Response.SUCCESS(id);
+    }
+
+    @GetMapping("/header")
+    public @ResponseBody
+    Response testHeader(@RequestHeader("id") Long id) {
+
+        return Response.SUCCESS(id);
+    }
+
+    @GetMapping("/exception")
+    public String testException() throws Exception {
+        return 5 / 0 + "";
+    }
+
+    @GetMapping("/exception/web")
+    public String testWebException() throws Exception {
+        try {
+            int a = 5 / 0;
+        } catch (Exception e) {
+            throw new WebException(e);
+        }
+        return "hello-index";
+    }
+
+    @GetMapping("/exception/api")
+    public Response testApiException() throws Exception {
+        try {
+            int a = 5 / 0;
+        } catch (Exception e) {
+            throw new ApiException(e);
+        }
+        return Response.SUCCESS(null);
     }
 }

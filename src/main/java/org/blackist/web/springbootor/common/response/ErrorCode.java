@@ -9,6 +9,7 @@ package org.blackist.web.springbootor.common.response;
 public interface ErrorCode {
 
     int OK = 0;
+    int ERROR = 1;
 
     int HTTP_400 = 400;
     int HTTP_500 = 500;

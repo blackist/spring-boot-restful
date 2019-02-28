@@ -5,9 +5,11 @@ import org.blackist.web.springbootor.web.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Controller
 @RequestMapping("/thymeleaf")
+@ApiIgnore
 public class ThymeleafController extends BaseController {
 
     @GetMapping

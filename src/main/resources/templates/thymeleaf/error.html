@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+Error on visiting [&nbsp; <span style="color: blue" th:text="${e.url}"></span> &nbsp;]
+<p>错误码：<span style="color: red" th:text="${e.code}"></span></p>
+<p>错误消息：<span style="color: red" th:text="${e.message}"></span></p>
+<p>错误：<span style="color: red" th:text="${e.exception}"></span></p>
+</body>
+</html>

@@ -27,6 +27,7 @@ public class UserController extends BaseController {
     @GetMapping("/{id}")
     public Response getUser(@PathVariable("id") Long id) {
         System.out.println(id);
+        int a = 5 / 0;
         return Response.SUCCESS(users.get(id));
     }
 
