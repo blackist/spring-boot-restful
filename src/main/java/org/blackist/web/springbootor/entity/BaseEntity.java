@@ -1,5 +1,7 @@
 package org.blackist.web.springbootor.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
@@ -10,6 +12,8 @@ import java.io.Serializable;
  */
 public abstract class BaseEntity implements Serializable {
 
+    @Id
+    @GeneratedValue
     protected Long id;
 
     public Long getId() {
