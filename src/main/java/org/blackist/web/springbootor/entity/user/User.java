@@ -2,8 +2,7 @@ package org.blackist.web.springbootor.entity.user;
 
 import org.blackist.web.springbootor.entity.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * TODO ${TODO}
@@ -12,6 +11,8 @@ import javax.persistence.Entity;
  * @Date:2019/2/4 15:05.
  */
 @Entity
+@Table(name = "user")
+@Access(value = AccessType.FIELD)
 public class User extends BaseEntity {
 
     @Column(nullable = false)
@@ -19,6 +20,9 @@ public class User extends BaseEntity {
 
     @Column(nullable = false)
     private String password;
+
+    @Column
+    private int sex;
 
     public String getName() {
         return name;
@@ -34,5 +38,13 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 }
