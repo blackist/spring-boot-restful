@@ -24,7 +24,7 @@ public class JpaTest {
 
         User user = new User();
 
-        user.setName("black");
+        user.setName("yuti");
         user.setPassword("123456");
 
         userRepository.save(user);
