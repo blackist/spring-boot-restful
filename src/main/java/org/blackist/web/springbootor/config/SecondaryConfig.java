@@ -28,28 +28,28 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactoryPrimary",
-        transactionManagerRef = "transactionManagerPrimary",
-        basePackages = {"org.blackist.web.springbootor.entity"}
+        entityManagerFactoryRef = "entityManagerFactorySecondary",
+        transactionManagerRef = "transactionManagerSecondary",
+        basePackages = {"org.blackist.web.springbootor.entity2nd"}
 )
-public class PrimaryConfig {
+public class SecondaryConfig {
 
     @Autowired
-    @Qualifier("primaryDataSource")
-    private DataSource primaryDataSource;
+    @Qualifier("secondaryDataSource")
+    private DataSource secondaryDataSource;
 
     @Primary
-    @Bean(name = "entityManagerPrimary")
+    @Bean(name = "entityManagerSecondary")
     public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactoryPrimary(builder).getObject().createEntityManager();
+        return entityManagerFactorySecondary(builder).getObject().createEntityManager();
     }
 
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary(EntityManagerFactoryBuilder builder) {
         return builder
-                .dataSource(primaryDataSource)
+                .dataSource(secondaryDataSource)
                 .properties(getVendorProperties())
-                .packages("org.blackist.web.springbootor.entity")
-                .persistenceUnit("primaryPersistenceUnit")
+                .packages("org.blackist.web.springbootor.entity2nd")
+                .persistenceUnit("secondaryPersistenceUnit")
                 .build();
     }
 
@@ -64,7 +64,7 @@ public class PrimaryConfig {
         return hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
     }
 
-    public PlatformTransactionManager transactionManagerPrimary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactoryPrimary(builder).getObject());
+    public PlatformTransactionManager transactionManagerSecondary(EntityManagerFactoryBuilder builder) {
+        return new JpaTransactionManager(entityManagerFactorySecondary(builder).getObject());
     }
 }
