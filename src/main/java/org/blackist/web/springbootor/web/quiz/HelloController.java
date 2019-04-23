@@ -13,6 +13,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class HelloController {
 
     @GetMapping
+    @ResponseBody
     public String index() {
         return "Hello, SpringBootor!";
     }
