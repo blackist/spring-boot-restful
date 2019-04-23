@@ -1,23 +1,22 @@
 package org.blackist.web.springbootor.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
-import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Map;
 
 /**
  * TODO ${TODO}
@@ -25,46 +24,43 @@ import java.util.Map;
  * @author LiangLiang.Dong<liangl.dong @ qq.com>
  * @since 2019/4/15 23:40.
  */
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactorySecondary",
-        transactionManagerRef = "transactionManagerSecondary",
-        basePackages = {"org.blackist.web.springbootor.entity2nd"}
-)
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(
+//        entityManagerFactoryRef = "entityManagerFactorySecond",
+//        transactionManagerRef = "transactionManagerSecond",
+//        basePackages = {"org.blackist.web.springbootor.repository2nd"}
+//)
 public class SecondaryConfig {
 
-    @Autowired
-    @Qualifier("secondaryDataSource")
-    private DataSource secondaryDataSource;
+    @Bean(name = "secondDataSource")
+    @Primary
+    @ConfigurationProperties("spring.datasource.second")
+    public DataSource secondDataSource() {
+        return DataSourceBuilder.create().build();
+    }
 
     @Primary
-    @Bean(name = "entityManagerSecondary")
-    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
-        return entityManagerFactorySecondary(builder).getObject().createEntityManager();
+    @Bean(name = "entityManagerFactorySecond")
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary() {
+
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setGenerateDdl(true);
+
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+
+        factoryBean.setDataSource(secondDataSource());
+        factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        factoryBean.setPackagesToScan("org.blackist.web.springbootor.entity2nd");
+
+        return factoryBean;
     }
 
-    public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary(EntityManagerFactoryBuilder builder) {
-        return builder
-                .dataSource(secondaryDataSource)
-                .properties(getVendorProperties())
-                .packages("org.blackist.web.springbootor.entity2nd")
-                .persistenceUnit("secondaryPersistenceUnit")
-                .build();
-    }
 
-
-    @Autowired
-    private JpaProperties jpaProperties;
-
-    @Autowired
-    private HibernateProperties hibernateProperties;
-
-    private Map<String, Object> getVendorProperties() {
-        return hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
-    }
-
-    public PlatformTransactionManager transactionManagerSecondary(EntityManagerFactoryBuilder builder) {
-        return new JpaTransactionManager(entityManagerFactorySecondary(builder).getObject());
+    @Primary
+    @Bean(name = "transactionManagerSecond")
+    public PlatformTransactionManager transactionManagerPrimary(
+            @Qualifier("entityManagerFactorySecond") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }
