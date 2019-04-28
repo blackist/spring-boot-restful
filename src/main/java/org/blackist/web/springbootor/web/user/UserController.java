@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.blackist.web.springbootor.common.response.Response;
 import org.blackist.web.springbootor.common.response.SuccessReponse;
-import org.blackist.web.springbootor.entity.user.User;
+import org.blackist.web.springbootor.model.entity.system.User;
 import org.blackist.web.springbootor.web.BaseController;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +38,7 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("用户创建")
-    @ApiImplicitParam(name = "user", value = "用户信息", required = true, dataType = "Json", paramType = "body")
+    @ApiImplicitParam(name = "system", value = "用户信息", required = true, dataType = "Json", paramType = "body")
     @PostMapping("/")
     public Response createUser(@RequestBody User user) {
         user.setId(new Random().nextLong());

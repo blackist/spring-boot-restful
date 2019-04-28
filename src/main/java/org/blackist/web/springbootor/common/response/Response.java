@@ -29,6 +29,30 @@ public class Response {
         this.data = data;
     }
 
+    public Response code(int code) {
+        this.code = code;
+        return Response.this;
+    }
+
+    public Response message(String message) {
+        this.message = message;
+        return Response.this;
+    }
+
+    public Response data(Object data) {
+        this.data = data;
+        return Response.this;
+    }
+
+    public Response data(String key, Object value) {
+        if (!(data instanceof Data)) {
+            this.data = new Data();
+        }
+        ((Data) data).put(key, value);
+
+        return Response.this;
+    }
+
     public int getCode() {
         return code;
     }

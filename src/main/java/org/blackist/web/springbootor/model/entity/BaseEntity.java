@@ -1,4 +1,4 @@
-package org.blackist.web.springbootor.entity;
+package org.blackist.web.springbootor.model.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

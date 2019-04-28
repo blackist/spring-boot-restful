@@ -1,6 +1,6 @@
 package org.blackist.web.springbootor.web.quiz;
 
-import org.blackist.web.springbootor.entity.user.User;
+import org.blackist.web.springbootor.model.entity.system.User;
 import org.blackist.web.springbootor.web.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,7 +40,7 @@ public class ThymeleafController extends BaseController {
         user.setId(1L);
         user.setName("blackist");
         user.setPassword("black");
-        map.put("user", user);
+        map.put("system", user);
 
         return "user-detail";
     }

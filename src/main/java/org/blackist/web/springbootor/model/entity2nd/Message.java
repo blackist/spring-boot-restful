@@ -1,6 +1,6 @@
-package org.blackist.web.springbootor.entity2nd;
+package org.blackist.web.springbootor.model.entity2nd;
 
-import org.blackist.web.springbootor.entity.BaseEntity;
+import org.blackist.web.springbootor.model.entity.BaseEntity;
 
 import javax.persistence.*;
 
@@ -11,7 +11,7 @@ import javax.persistence.*;
  * @since 2019/4/19 7:41.
  */
 @Entity
-@Table(name = "message")
+@Table(name = "S_MESSAGE")
 @Access(value = AccessType.FIELD)
 public class Message extends BaseEntity {
 

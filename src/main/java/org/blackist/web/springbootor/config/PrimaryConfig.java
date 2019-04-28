@@ -49,8 +49,8 @@ public class PrimaryConfig {
         DriverManagerDataSource dataSource
                 = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getProperty("user.jdbc.url"));
-        dataSource.setUsername(env.getProperty("jdbc.user"));
+        dataSource.setUrl(env.getProperty("system.jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.system"));
         dataSource.setPassword(env.getProperty("jdbc.pass"));
 
 
@@ -68,7 +68,7 @@ public class PrimaryConfig {
 
         factoryBean.setDataSource(firstDataSource());
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        factoryBean.setPackagesToScan("org.blackist.web.springbootor.entity");
+        factoryBean.setPackagesToScan("org.blackist.web.springbootor.model.entity");
 
         return factoryBean;
     }

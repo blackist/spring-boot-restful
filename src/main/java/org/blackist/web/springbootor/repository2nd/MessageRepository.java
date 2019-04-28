@@ -1,6 +1,6 @@
 package org.blackist.web.springbootor.repository2nd;
 
-import org.blackist.web.springbootor.entity2nd.Message;
+import org.blackist.web.springbootor.model.entity2nd.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
