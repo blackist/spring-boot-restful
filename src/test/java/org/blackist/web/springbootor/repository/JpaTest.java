@@ -1,5 +1,6 @@
 package org.blackist.web.springbootor.repository;
 
+import org.blackist.web.springbootor.SpringbootorApplication;
 import org.blackist.web.springbootor.model.entity.system.Role;
 import org.blackist.web.springbootor.model.entity.system.User;
 import org.blackist.web.springbootor.model.entity2nd.Message;
@@ -11,13 +12,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@SpringBootTest(classes = SpringbootorApplication.class)
+//@DataJpaTest
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class JpaTest {
 
     @Autowired
@@ -29,6 +33,9 @@ public class JpaTest {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Test
     public void save() {
 
@@ -37,7 +44,7 @@ public class JpaTest {
 
         user.setName("Yuti");
         user.setUsername("yuti");
-        user.setPassword("123456");
+        user.setPassword(passwordEncoder.encode("123456"));
         user.setEnable(true);
 
         userRepository.save(user);

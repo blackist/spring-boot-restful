@@ -23,6 +23,7 @@ public class SecurityModelFactory {
                 user.getId(),
                 user.getUsername(),
                 user.getPassword(),
+                user.getLastPasswordReset(),
                 user.isEnable(),
                 authorities
         );

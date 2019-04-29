@@ -2,8 +2,10 @@ package org.blackist.web.springbootor.model.entity.system;
 
 import org.blackist.web.springbootor.model.security.TokenDetail;
 import org.blackist.web.springbootor.model.entity.BaseEntity;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * TODO ${TODO}
@@ -27,6 +29,11 @@ public class User extends BaseEntity implements TokenDetail {
 
     @Column
     private int sex;
+
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column
+    private Date lastPasswordReset;
 
     @Column
     private boolean enable;
@@ -68,6 +75,14 @@ public class User extends BaseEntity implements TokenDetail {
 
     public void setSex(int sex) {
         this.sex = sex;
+    }
+
+    public Date getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Date lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
     }
 
     public boolean isEnable() {

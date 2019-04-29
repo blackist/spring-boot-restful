@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 
 public class UserDetailImpl implements UserDetails {
 
@@ -14,6 +15,7 @@ public class UserDetailImpl implements UserDetails {
     private Long id;
     private String username;
     private String password;
+    private Date lastPasswordReset;
     private Boolean enable;
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -28,10 +30,11 @@ public class UserDetailImpl implements UserDetails {
     public UserDetailImpl() {
     }
 
-    public UserDetailImpl(Long id, String username, String password, Boolean enable, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailImpl(Long id, String username, String password, Date lastPasswordReset, Boolean enable, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.lastPasswordReset = lastPasswordReset;
         this.enable = enable;
         this.authorities = authorities;
     }
@@ -50,6 +53,15 @@ public class UserDetailImpl implements UserDetails {
     @Override
     public String getUsername() {
         return this.username;
+    }
+
+    @JsonIgnore
+    public Date getLastPasswordReset() {
+        return lastPasswordReset;
+    }
+
+    public void setLastPasswordReset(Date lastPasswordReset) {
+        this.lastPasswordReset = lastPasswordReset;
     }
 
     @Override
