@@ -18,7 +18,7 @@ import java.util.Date;
 @Access(value = AccessType.FIELD)
 public class User extends BaseEntity implements TokenDetail {
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String name;
 
     @Column(nullable = false)

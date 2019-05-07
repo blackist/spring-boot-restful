@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * TODO ${TODO}
  *
- * @author LiangLiang.Dong<liangl.dong @ qq.com>
+ * @author LiangLiang.Dong<liangl.dong   @   qq.com>
  * @since 2019/4/19 7:52.
  */
 public interface MessageRepository extends JpaRepository<Message, Long> {

@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * TODO ${TODO}
  *
- * @author LiangLiang.Dong<liangl.dong@qq.com>
+ * @author LiangLiang.Dong<liangl.dong @ qq.com>
  * @since 2019/2/4 15:07
  */
 @MappedSuperclass

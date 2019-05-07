@@ -5,10 +5,12 @@ import io.swagger.annotations.ApiOperation;
 import org.blackist.web.springbootor.common.response.Response;
 import org.blackist.web.springbootor.common.response.SuccessReponse;
 import org.blackist.web.springbootor.model.entity.system.User;
+import org.blackist.web.springbootor.service.system.UserService;
 import org.blackist.web.springbootor.web.BaseController;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import javax.annotation.Resource;
 
 /**
  * TODO ${TODO}
@@ -20,51 +22,64 @@ import java.util.*;
 @RequestMapping("/users")
 public class UserController extends BaseController {
 
-    private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private PasswordEncoder passwordEncoder;
 
     @ApiOperation("用户单个获取")
-    @ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long", paramType = "path")
+    @ApiImplicitParam(
+            name = "id",
+            value = "用户ID",
+            required = true,
+            dataType = "Long",
+            paramType = "path")
     @GetMapping("/{id}")
     public Response getUser(@PathVariable("id") Long id) {
         System.out.println(id);
-        int a = 5 / 0;
-        return Response.SUCCESS(users.get(id));
+        User user = userService.findById(id);
+        return user != null ? Response.SUCCESS(user) : Response.DATA_NULL();
     }
 
     @ApiOperation("用户条件查询")
     @GetMapping("/")
     public Response queryUsers() {
-        return new SuccessReponse(new ArrayList<>(users.values()));
+        return new SuccessReponse(userService.findAll());
     }
 
     @ApiOperation("用户创建")
-    @ApiImplicitParam(name = "system", value = "用户信息", required = true, dataType = "Json", paramType = "body")
+    @ApiImplicitParam(
+            name = "system",
+            value = "用户信息",
+            required = true,
+            dataType = "Json",
+            paramType = "body")
     @PostMapping("/")
     public Response createUser(@RequestBody User user) {
-        user.setId(new Random().nextLong());
-        users.put(user.getId(), user);
-        return Response.SUCCESS(user);
+
+
+        return Response.SUCCESS(userService.save(user));
     }
 
     @ApiOperation("用户更新")
     @PutMapping("/")
     public Response updateUser(@RequestBody User user) {
-        if (user.getId() != null && users.containsKey(user.getId())) {
-            users.put(user.getId(), user);
-            return Response.SUCCESS(user);
-        } else {
-            return Response.PARAM_ERROR();
-        }
+        return Response.SUCCESS(userService.save(user));
     }
 
     @ApiOperation("用户删除")
     @DeleteMapping("/{id}")
     public Response deleteUser(@PathVariable("id") Long id) {
         if (id != null) {
-            users.remove(id);
+            userService.deleteById(id);
             return Response.SUCCESS(id);
         } else {
             return Response.PARAM_NULL();
         }
+    }
+
+    private void testUsers() {
+
     }
 }

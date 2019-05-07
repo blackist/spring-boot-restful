@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 /**
  * TODO ${TODO}
  *
- * @author LiangLiang.Dong<liangl.dong               @               qq.com>
+ * @author LiangLiang.Dong<liangl.dong                               @                               qq.com>
  * @since 2019/4/14 15:21.
  */
 public class DataSourceConfig {

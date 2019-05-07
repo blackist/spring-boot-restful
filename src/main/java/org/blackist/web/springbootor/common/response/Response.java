@@ -91,4 +91,8 @@ public class Response {
     public static Response PARAM_NULL() {
         return new Response().setCode(ErrorCode.PARAM_NULL).setMessage("Param Null");
     }
+
+    public static Response DATA_NULL() {
+        return new Response().setCode(ErrorCode.DATA_NULL).setMessage("Data Null");
+    }
 }
