@@ -22,7 +22,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public TokenDetail getTokenDetail(String username) {
-        return userRepository.findUserByUsername(username);
+        return userRepository.getByUsername(username);
     }
 
     @Override

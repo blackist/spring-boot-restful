@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cache.CacheManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,9 @@ public class JpaTest {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CacheManager cacheManager;
 
     @Test
     @Transactional
@@ -67,7 +71,7 @@ public class JpaTest {
 
     @Test
     public void test() {
-        User user = userRepository.findUserByUsername("yuti");
+        User user = userRepository.getByUsername("yuti");
         System.out.println(user.getName());
     }
 
@@ -76,9 +80,20 @@ public class JpaTest {
         Role role = new Role("Admin", "administrator", "home,news");
         role = roleRepository.save(role);
 
-        User user = userRepository.findUserByUsername("yuti");
+        User user = userRepository.getByUsername("yuti");
         user.setRole(role);
 
         userRepository.saveAndFlush(user);
+    }
+
+    @Test
+    public void testCache() {
+        User user = userRepository.getByUsername("yuti");
+        System.out.println(user.getName());
+
+        userRepository.updateUserSetNameForUsername("yuti", "Yutis");
+
+        User user1 = userRepository.getByUsername("yuti");
+        System.out.println(user1.getName());
     }
 }
