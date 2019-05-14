@@ -37,7 +37,7 @@ public class UserController extends BaseController {
             paramType = "path")
     @GetMapping("/{id}")
     public Response getUser(@PathVariable("id") Long id) {
-        System.out.println(id);
+        logger.info("userId: " + id);
         User user = userService.findById(id);
         return user != null ? Response.SUCCESS(user) : Response.DATA_NULL();
     }
@@ -72,8 +72,14 @@ public class UserController extends BaseController {
     @DeleteMapping("/{id}")
     public Response deleteUser(@PathVariable("id") Long id) {
         if (id != null) {
-            userService.deleteById(id);
-            return Response.SUCCESS(id);
+            User user = userService.findById(id);
+            if (user != null) {
+                userService.deleteById(id);
+                return Response.SUCCESS(id);
+            } else {
+                logger.error("User Not exists");
+                return Response.PARAM_ERROR().message("User Not exists");
+            }
         } else {
             return Response.PARAM_NULL();
         }

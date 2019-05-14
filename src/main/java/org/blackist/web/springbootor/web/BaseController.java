@@ -1,5 +1,8 @@
 package org.blackist.web.springbootor.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * TODO ${TODO}
  *
@@ -7,4 +10,6 @@ package org.blackist.web.springbootor.web;
  * @Date:2019/2/4 15:17.
  */
 public abstract class BaseController {
+
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 }
