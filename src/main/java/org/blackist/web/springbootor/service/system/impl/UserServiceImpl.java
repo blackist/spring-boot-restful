@@ -2,7 +2,7 @@ package org.blackist.web.springbootor.service.system.impl;
 
 import org.blackist.web.springbootor.model.entity.system.User;
 import org.blackist.web.springbootor.repository.system.UserRepository;
-import org.blackist.web.springbootor.service.impl.BaseServiceImpl;
+import org.blackist.web.springbootor.service.BaseServiceImpl;
 import org.blackist.web.springbootor.service.system.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

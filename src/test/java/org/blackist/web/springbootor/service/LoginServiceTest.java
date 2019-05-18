@@ -2,6 +2,7 @@ package org.blackist.web.springbootor.service;
 
 import org.blackist.web.springbootor.SpringbootorApplication;
 import org.blackist.web.springbootor.model.security.TokenDetail;
+import org.blackist.web.springbootor.service.system.LoginService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

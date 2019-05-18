@@ -1,4 +1,4 @@
-package org.blackist.web.springbootor.service.impl;
+package org.blackist.web.springbootor.service.system.impl;
 
 import org.blackist.web.springbootor.model.entity.system.User;
 import org.blackist.web.springbootor.model.security.SecurityModelFactory;

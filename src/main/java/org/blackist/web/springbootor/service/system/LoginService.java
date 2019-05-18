@@ -1,4 +1,4 @@
-package org.blackist.web.springbootor.service;
+package org.blackist.web.springbootor.service.system;
 
 import org.blackist.web.springbootor.model.security.TokenDetail;
 

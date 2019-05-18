@@ -64,12 +64,9 @@
         <logger name="org.mybatis" level="INFO"/>
         <logger name="org.hibernate.validator.internal.util.Version" level="warn"/>
         <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
-        <logger name="org.blackist.web.springbootor.repository" level="trace" additivity="false">
+        <logger name="org.blackist.web.springbootor" level="trace" additivity="false">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
-        </logger>
-        <logger name="org.blackist.web.springbootor" level="error">
-            <appender-ref ref="RollingFileError"/>
         </logger>
 
         <root level="info">

@@ -1,9 +1,9 @@
-package org.blackist.web.springbootor.service.impl;
+package org.blackist.web.springbootor.service.system.impl;
 
 import org.blackist.web.springbootor.model.security.TokenDetail;
 import org.blackist.web.springbootor.model.security.TokenUtil;
 import org.blackist.web.springbootor.repository.system.UserRepository;
-import org.blackist.web.springbootor.service.LoginService;
+import org.blackist.web.springbootor.service.system.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

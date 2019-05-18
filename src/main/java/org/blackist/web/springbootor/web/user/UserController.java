@@ -2,6 +2,7 @@ package org.blackist.web.springbootor.web.user;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.blackist.web.springbootor.common.aspect.WebLog;
 import org.blackist.web.springbootor.common.response.Response;
 import org.blackist.web.springbootor.common.response.SuccessReponse;
 import org.blackist.web.springbootor.model.entity.system.User;
@@ -28,6 +29,7 @@ public class UserController extends BaseController {
     @Resource
     private PasswordEncoder passwordEncoder;
 
+    @WebLog("getUser")
     @ApiOperation("用户单个获取")
     @ApiImplicitParam(
             name = "id",
@@ -37,7 +39,7 @@ public class UserController extends BaseController {
             paramType = "path")
     @GetMapping("/{id}")
     public Response getUser(@PathVariable("id") Long id) {
-        logger.info("userId: " + id);
+        logger.debug("userId: " + id);
         User user = userService.findById(id);
         return user != null ? Response.SUCCESS(user) : Response.DATA_NULL();
     }

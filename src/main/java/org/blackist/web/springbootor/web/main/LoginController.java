@@ -4,7 +4,7 @@ package org.blackist.web.springbootor.web.main;
 import org.blackist.web.springbootor.common.response.Data;
 import org.blackist.web.springbootor.common.response.Response;
 import org.blackist.web.springbootor.model.security.TokenDetail;
-import org.blackist.web.springbootor.service.LoginService;
+import org.blackist.web.springbootor.service.system.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
