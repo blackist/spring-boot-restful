@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //        })
 @SpringBootApplication
 @EnableTransactionManagement
-@EnableCaching
+//@EnableCaching
 @EnableAspectJAutoProxy
 public class SpringbootorApplication {
 

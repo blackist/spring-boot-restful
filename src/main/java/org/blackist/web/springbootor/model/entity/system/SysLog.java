@@ -14,13 +14,35 @@ import javax.persistence.Table;
 @Access(value = AccessType.FIELD)
 public class SysLog extends BaseEntity {
 
-    private String className;
+    /**
+     * http
+     */
+    private String requestURL;
 
-    private String methodName;
+    private String requestURI;
+
+    private String queryString;
+
+    private String headers;
+
+    private String remoteAddr;
+
+    private String remoteHost;
+
+    private int remotePort;
+
+    private String localAddr;
+
+    private String localName;
+
+    /**
+     * method
+     */
+    private String classMethod;
 
     private String params;
 
-    private Long exeuTime;
+    private Long executeTime;
 
     private String remark;
 }

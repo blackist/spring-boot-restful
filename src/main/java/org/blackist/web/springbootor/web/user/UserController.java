@@ -29,8 +29,8 @@ public class UserController extends BaseController {
     @Resource
     private PasswordEncoder passwordEncoder;
 
-    @WebLog("getUser")
-    @ApiOperation("用户单个获取")
+    @WebLog("用户单个获取")
+    @ApiOperation("获取单个用户")
     @ApiImplicitParam(
             name = "id",
             value = "用户ID",
