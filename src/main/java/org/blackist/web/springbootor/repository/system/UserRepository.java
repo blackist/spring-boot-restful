@@ -14,13 +14,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-//@CacheConfig(cacheNames = "users")
+@CacheConfig(cacheNames = "users")
 public interface UserRepository extends BaseRepository<User, Long> {
 
-//    @Cacheable(key = "#p0")
+    @Cacheable(key = "#p0")
     User getByUsername(String username);
 
-//    @CacheEvict(cacheNames = "users", key = "#p0")
+    @CacheEvict(key = "#p0")
     @Transactional
     @Modifying
     @Query("update User set name=:name where username=:username")
