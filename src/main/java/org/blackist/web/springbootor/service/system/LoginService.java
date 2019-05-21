@@ -5,15 +5,15 @@ import org.blackist.web.springbootor.model.security.TokenDetail;
 public interface LoginService {
 
     /**
-     * get user detail from db
+     * get system detail from db
      *
      * @param username username
-     * @return user detail
+     * @return system detail
      */
     TokenDetail getTokenDetail(String username);
 
     /**
-     * generate token with user detail
+     * generate token with system detail
      *
      * @return token
      */

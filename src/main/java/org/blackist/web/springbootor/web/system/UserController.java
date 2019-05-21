@@ -1,4 +1,4 @@
-package org.blackist.web.springbootor.web.user;
+package org.blackist.web.springbootor.web.system;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ public class UserController extends BaseController {
     @Resource
     private PasswordEncoder passwordEncoder;
 
-    @WebLog("用户单个获取")
+    @WebLog
     @ApiOperation("获取单个用户")
     @ApiImplicitParam(
             name = "id",
@@ -45,11 +45,12 @@ public class UserController extends BaseController {
     }
 
     @ApiOperation("用户条件查询")
-    @GetMapping("/")
+    @GetMapping("")
     public Response queryUsers() {
         return new SuccessReponse(userService.findAll());
     }
 
+    @WebLog
     @ApiOperation("用户创建")
     @ApiImplicitParam(
             name = "system",
@@ -64,12 +65,14 @@ public class UserController extends BaseController {
         return Response.SUCCESS(userService.save(user));
     }
 
+    @WebLog
     @ApiOperation("用户更新")
     @PutMapping("/")
     public Response updateUser(@RequestBody User user) {
         return Response.SUCCESS(userService.save(user));
     }
 
+    @WebLog
     @ApiOperation("用户删除")
     @DeleteMapping("/{id}")
     public Response deleteUser(@PathVariable("id") Long id) {
@@ -87,7 +90,4 @@ public class UserController extends BaseController {
         }
     }
 
-    private void testUsers() {
-
-    }
 }

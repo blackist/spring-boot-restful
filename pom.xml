@@ -20,7 +20,10 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <jjwt.version>0.9.1</jjwt.version>
+        <mysql.version>5.1.20</mysql.version>
+        <mongo.version>3.8.0</mongo.version>
         <lombok.version>1.16.10</lombok.version>
+        <log4j.nosql.version>2.9.0</log4j.nosql.version>
     </properties>
 
     <!--添加 Spring Release Repository-->
@@ -99,11 +102,20 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.20</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver</artifactId>
+            <version>3.9.0</version>
         </dependency>
 
         <!--Security JWT-->

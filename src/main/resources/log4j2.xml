@@ -53,25 +53,27 @@
             </Policies>
         </RollingFile>
 
-
+        <!--<NoSql name="mongoAppender">-->
+            <!--<MongoDb3 databaseName="springbootor" collectionName="weblog" server="192.168.11.3" port="27017"-->
+                      <!--username="black" password="black"/>-->
+        <!--</NoSql>-->
     </appenders>
     <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
     <loggers>
         <!--过滤掉spring和hibernate的一些无用的debug信息-->
         <logger name="org.springframework" level="INFO"/>
-        <logger name="org.elasticsearch" level="INFO"/>
-        <logger name="com.jd.jsf.gd" level="warn"/>
         <logger name="org.mybatis" level="INFO"/>
-        <logger name="org.hibernate.validator.internal.util.Version" level="warn"/>
+        <logger name="org.hibernate" level="info"/>
         <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
-        <logger name="org.blackist.web.springbootor" level="trace" additivity="false">
+        <logger name="org.blackist.web.springbootor" level="debug" additivity="false">
             <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
+            <!--<appender-ref ref="RollingFileInfo"/>-->
+            <!--<appender-ref ref="mongoAppender"/>-->
         </logger>
 
         <root level="info">
             <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFileInfo"/>
+            <!--<appender-ref ref="RollingFileInfo"/>-->
         </root>
 
     </loggers>

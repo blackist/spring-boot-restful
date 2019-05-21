@@ -45,14 +45,14 @@ public class JpaTest {
         User user = new User();
 //        Message message = new Message("name", "content");
 
-//        user.setName("BlackBlackBlackBlackBlackBlackBlack");
+//        system.setName("BlackBlackBlackBlackBlackBlackBlack");
         user.setName("Blackist");
         user.setUsername("blackist");
         user.setPassword(passwordEncoder.encode("123456"));
         user.setEnable(true);
 
         User user1 = new User();
-//        user.setName("BlackBlackBlackBlackBlackBlackBlack");
+//        system.setName("BlackBlackBlackBlackBlackBlackBlack");
         user1.setName("Yuti");
         user1.setUsername("yuti");
         user1.setPassword(passwordEncoder.encode("123456"));

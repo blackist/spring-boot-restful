@@ -1,18 +1,17 @@
 package org.blackist.web.springbootor.model.entity.system;
 
 import lombok.Data;
-import org.blackist.web.springbootor.model.entity.BaseEntity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.Date;
 
 @Data
-@Entity
-@Table(name = "S_SYS_LOG")
-@Access(value = AccessType.FIELD)
-public class SysLog extends BaseEntity {
+@Document(collection = "weblog")
+public class WebLog {
+
+    @Id
+    private String id;
 
     /**
      * http
@@ -45,4 +44,6 @@ public class SysLog extends BaseEntity {
     private Long executeTime;
 
     private String remark;
+
+    private Date createTime;
 }
