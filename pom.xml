@@ -23,6 +23,7 @@
         <mysql.version>5.1.20</mysql.version>
         <mongo.version>3.8.0</mongo.version>
         <lombok.version>1.16.10</lombok.version>
+        <velocity.version>1.7</velocity.version>
         <log4j.nosql.version>2.9.0</log4j.nosql.version>
     </properties>
 
@@ -157,6 +158,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+        <!--Mail-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-velocity</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+
 
         <!--DevTools-->
         <dependency>
