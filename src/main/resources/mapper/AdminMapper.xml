@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.blackist.web.springbootor.mapper.AdminMapper">
+
+    <select id="findAll" resultType="admin">
+        SELECT *
+        FROM `admin`;
+    </select>
+
+    <insert id="create" parameterType="org.blackist.web.springbootor.model.entity.system.Admin">
+        INSERT INTO `admin`
+        VALUES (#{id}, #{name}, #{age});
+    </insert>
+</mapper>

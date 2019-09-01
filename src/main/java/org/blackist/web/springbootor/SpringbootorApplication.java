@@ -6,12 +6,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@SpringBootApplication(
-//        exclude = {
-//                DataSourceAutoConfiguration.class,
-//                HibernateJpaAutoConfiguration.class,
-//                DataSourceTransactionManagerAutoConfiguration.class
-//        })
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableCaching
