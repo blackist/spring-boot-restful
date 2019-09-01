@@ -42,4 +42,9 @@ public class AdminController extends BaseController {
 			return Response.PARAM_ERROR();
 		}
 	}
+
+	@GetMapping("/getRedis")
+	public Response getRedis() {
+		return Response.SUCCESS(adminService.findRedis());
+	}
 }

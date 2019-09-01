@@ -12,4 +12,6 @@ public interface AdminService {
 	List<Admin> findAll();
 
 	Integer create(Admin admin);
+
+	String findRedis();
 }
