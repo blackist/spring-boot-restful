@@ -21,74 +21,75 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userDetailsService;
+	private final UserDetailsService userDetailsService;
 
-    private final AuthenticationAccessDeniedHandler accessDeniedHandler;
+	private final AuthenticationAccessDeniedHandler accessDeniedHandler;
 
-    private final EntryPointUnauthorizedHandler unauthorizedHandler;
+	private final EntryPointUnauthorizedHandler unauthorizedHandler;
 
-    @Autowired
-    public WebSecurityConfig(UserDetailsService userDetailsService, AuthenticationAccessDeniedHandler accessDeniedHandler, EntryPointUnauthorizedHandler unauthorizedHandler) {
-        this.userDetailsService = userDetailsService;
-        this.accessDeniedHandler = accessDeniedHandler;
-        this.unauthorizedHandler = unauthorizedHandler;
-    }
+	@Autowired
+	public WebSecurityConfig(UserDetailsService userDetailsService, AuthenticationAccessDeniedHandler accessDeniedHandler, EntryPointUnauthorizedHandler unauthorizedHandler) {
+		this.userDetailsService = userDetailsService;
+		this.accessDeniedHandler = accessDeniedHandler;
+		this.unauthorizedHandler = unauthorizedHandler;
+	}
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
-        auth.authenticationProvider(authenticationProvider());
-    }
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+		auth.authenticationProvider(authenticationProvider());
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
-                .antMatchers("/api/doc", "/swagger**/**", "/webjars/**", "/images/**", "/v2/**", "/configuration/**").permitAll()
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/", "/login").permitAll()
+				.antMatchers("/js/**", "/css/**").permitAll()
+				.antMatchers("/api/doc", "/swagger**/**", "/webjars/**", "/images/**", "/v2/**", "/configuration/**").permitAll()
 //                .antMatchers("/hello").hasAuthority("admin")
-                .anyRequest().authenticated()
-                .and()
-                .logout()
-                .permitAll()
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(unauthorizedHandler)
-                .accessDeniedHandler(accessDeniedHandler)
-                .and()
-                .csrf()
-                .disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.anyRequest().authenticated()
+				.and()
+				.logout()
+				.permitAll()
+				.and()
+				.exceptionHandling()
+				.authenticationEntryPoint(unauthorizedHandler)
+				.accessDeniedHandler(accessDeniedHandler)
+				.and()
+				.csrf()
+				.disable()
+				.sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-    }
+		http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+	}
 
 
-    @Bean("passwordEncoder")
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean("passwordEncoder")
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
-        return authenticationProvider;
-    }
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+		authenticationProvider.setUserDetailsService(userDetailsService);
+		authenticationProvider.setPasswordEncoder(passwordEncoder());
+		return authenticationProvider;
+	}
 
-    /**
-     * 注册 token 转换拦截器为 bean
-     * 如果客户端传来了 token ，那么通过拦截器解析 token 赋予用户权限
-     *
-     * @return
-     * @throws Exception
-     */
-    @Bean
-    public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
-        authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
-        return authenticationTokenFilter;
-    }
+	/**
+	 * 注册 token 转换拦截器为 bean
+	 * 如果客户端传来了 token ，那么通过拦截器解析 token 赋予用户权限
+	 *
+	 * @return
+	 * @throws Exception
+	 */
+	@Bean
+	public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+		AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
+		authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
+		return authenticationTokenFilter;
+	}
 
 }
