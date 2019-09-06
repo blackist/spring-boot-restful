@@ -16,7 +16,7 @@ import redis.clients.jedis.JedisCluster;
  * @author L.L Dong<liangl.dong@qq.com>
  * @since 2019/9/1
  */
-// @Configuration
+@Configuration
 public class RedisConfig {
 
 	// 注入集群节点信息

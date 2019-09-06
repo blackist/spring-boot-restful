@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import lombok.extern.log4j.Log4j2;
 import redis.clients.jedis.JedisCluster;
 
@@ -24,17 +22,19 @@ import redis.clients.jedis.JedisCluster;
 public class AdminServiceImpl implements AdminService {
 
 	private final AdminMapper mapper;
-	// @Resource
-	// private final JedisCluster jedisCluster;
+	private final JedisCluster jedisCluster;
 
-	public AdminServiceImpl(AdminMapper mapper) {
+	public AdminServiceImpl(AdminMapper mapper, JedisCluster jedisCluster) {
 		this.mapper = mapper;
+		this.jedisCluster = jedisCluster;
 	}
 
 	@Override
 	@Cacheable(value = "admins")
 	public List<Admin> findAll() {
 		log.debug("Query DB, Not From Redis Cache");
+
+		// log.debug(jedisCluster.get("admins::SimpleKey []"));
 		return mapper.findAll();
 	}
 
@@ -44,8 +44,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	public String findRedis() {
-		// jedisCluster.set("user", "UserA is Cool");
-		// return jedisCluster.get("user");
-		return null;
+		jedisCluster.set("user", "UserA is Cool");
+		return jedisCluster.get("user");
 	}
 }
